@@ -149,4 +149,4 @@ function main() {
   }, 1000);
 }
 
-module.exports = {main};
+module.exports = { main };
