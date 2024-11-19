@@ -11,7 +11,7 @@ function main() {
   console.log(getPromise());
   console.log("Program in progress...");
 
-  const promiseChain1 = getPromise()
+  getPromise()
     .then((data) => {
       console.log(data);
       return new Promise((resolve) => {
@@ -22,23 +22,20 @@ function main() {
     })
     .then((data) => {
       console.log(data);
-
     });
 
-  setTimeout(() => {
-    const promiseChain2 = getPromise()
-      .then((data) => {
-        console.log(data);
-        return new Promise((resolve) => {
-          setTimeout(() => {
-            resolve("Second promise chain complete!");
-          }, 2 * 1000);
-        });
-      })
-      .then((data) => {
-        console.log(data);
+  getPromise()
+    .then((data) => {
+      console.log(data);
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve("Second promise chain complete!");
+        }, 10 * 1000);
       });
-  }, 5000);
+    })
+    .then((data) => {
+      console.log(data);
+    });
 }
 
 main();
